@@ -684,6 +684,20 @@ ok {test-number} - with 7 messages: 'a := 1' and 'b := 2' and 'c := 3' and 'a + 
 ok {test-number} - with 7 messages: 'custom_index_op<int>{1, 2, 3}[0, 1, 2] := 0' and 'custom_index_op<int>{1, 2, 3}[(0, 1)] := 0' and 'custom_index_op<int>{1, 2, 3}[0] := 0' and '(helper_1436<int, int>{12, -12}) := { 12, -12 }' and '(helper_1436<int, int>(-12, 12)) := { -12, 12 }' and '(1, 2) := 2' and '(2, 3) := 3'
 # CAPTURE parses string and character constants
 ok {test-number} - with 11 messages: '("comma, in string", "escaped, \", ") := "escaped, ", "' and '"single quote in string,'," := "single quote in string,',"' and '"some escapes, \\,\\\\" := "some escapes, \,\\"' and '"some, ), unmatched, } prenheses {[<" := "some, ), unmatched, } prenheses {[<"' and ''"' := '"'' and ''\'' := '''' and '',' := ','' and ''}' := '}'' and '')' := ')'' and ''(' := '('' and ''{' := '{''
+# COMPILE_TIME_REQUIRE should always fail at runtime
+not ok {test-number} - explicitly with 1 message: 'COMPILE_TIME_REQUIRE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.'
+# COMPILE_TIME_REQUIRE should always fail at runtime
+not ok {test-number} - explicitly with 1 message: 'COMPILE_TIME_REQUIRE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.'
+# COMPILE_TIME_REQUIRE should always fail at runtime
+not ok {test-number} - false
+# COMPILE_TIME_REQUIRE_FALSE should always fail at runtime
+not ok {test-number} - explicitly with 1 message: 'COMPILE_TIME_REQUIRE_FALSE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.'
+# COMPILE_TIME_REQUIRE_FALSE should always fail at runtime
+not ok {test-number} - explicitly with 1 message: 'COMPILE_TIME_REQUIRE_FALSE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.'
+# COMPILE_TIME_REQUIRE_FALSE should always fail at runtime
+not ok {test-number} - !(true) for: !true
+# COMPILE_TIME_SECTIONS C++17
+ok {test-number} - true
 # Capture and info messages
 ok {test-number} - true with 1 message: 'i := 2'
 # Capture and info messages
@@ -2042,6 +2056,8 @@ ok {test-number} - multiReporter.getPreferences().shouldReportAllAssertions == t
 ok {test-number} - multiReporter.getPreferences().shouldRedirectStdOut == true for: true == true
 # Multireporter updates ReporterPreferences properly
 ok {test-number} - multiReporter.getPreferences().shouldReportAllAssertions == true for: true == true
+# Nested compile time sections
+ok {test-number} - [Passed at compile time] for: true
 # Nested generators and captured variables
 ok {test-number} - values > -6 for: 3 > -6
 # Nested generators and captured variables
@@ -2677,6 +2693,8 @@ not ok {test-number} - false with 1 message: 'Should survive a section end'
 A string sent directly to stdout
 A string sent directly to stderr
 A string sent to stderr via clog
+# Simple compile time section
+ok {test-number} - [Passed at compile time] for: true
 # Some simple comparisons between doubles
 ok {test-number} - d == Approx( 1.23 ) for: 1.22999999999999998 == Approx( 1.22999999999999998 )
 # Some simple comparisons between doubles
@@ -4627,5 +4645,5 @@ ok {test-number} - q3 == 23. for: 23.0 == 23.0
 ok {test-number} -
 # xmlentitycheck
 ok {test-number} -
-1..2315
+1..2324
 

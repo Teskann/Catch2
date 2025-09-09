@@ -104,6 +104,9 @@ Nor would this
 :test-result: PASS CAPTURE can deal with complex expressions
 :test-result: PASS CAPTURE can deal with complex expressions involving commas
 :test-result: PASS CAPTURE parses string and character constants
+:test-result: FAIL COMPILE_TIME_REQUIRE should always fail at runtime
+:test-result: FAIL COMPILE_TIME_REQUIRE_FALSE should always fail at runtime
+:test-result: PASS COMPILE_TIME_SECTIONS C++17
 :test-result: PASS Capture and info messages
 :test-result: FAIL Captures do not leave block with an exception
 :test-result: FAIL Captures outlive section end
@@ -197,6 +200,7 @@ Nor would this
 :test-result: FAIL Mismatching exception messages failing the test
 :test-result: PASS Multireporter calls reporters and listeners in correct order
 :test-result: PASS Multireporter updates ReporterPreferences properly
+:test-result: PASS Nested compile time sections
 :test-result: PASS Nested generators and captured variables
 :test-result: FAIL Nice descriptive name
 :test-result: FAIL Non-std exceptions can be translated
@@ -241,6 +245,7 @@ A string sent directly to stdout
 A string sent directly to stderr
 A string sent to stderr via clog
 :test-result: FAIL Sends stuff to stdout and stderr
+:test-result: PASS Simple compile time section
 :test-result: PASS Some simple comparisons between doubles
 Message from section one
 Message from section two

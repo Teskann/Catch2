@@ -172,6 +172,7 @@ set(IMPL_SOURCES
   ${SOURCES_DIR}/internal/catch_case_insensitive_comparisons.cpp
   ${SOURCES_DIR}/internal/catch_clara.cpp
   ${SOURCES_DIR}/internal/catch_commandline.cpp
+  ${SOURCES_DIR}/internal/catch_compile_time_asserts.cpp
   ${SOURCES_DIR}/internal/catch_console_colour.cpp
   ${SOURCES_DIR}/internal/catch_context.cpp
   ${SOURCES_DIR}/internal/catch_debug_console.cpp

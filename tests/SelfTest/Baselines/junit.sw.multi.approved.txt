@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="<exe-name>" errors="17" failures="140" skipped="12" tests="2315" hostname="tbd" time="{duration}" timestamp="{iso8601-timestamp}">
+  <testsuite name="<exe-name>" errors="17" failures="146" skipped="12" tests="2324" hostname="tbd" time="{duration}" timestamp="{iso8601-timestamp}">
     <properties>
       <property name="random-seed" value="1"/>
       <property name="filters" value="&quot;*&quot; ~[!nonportable] ~[!benchmark] ~[approvals]"/>
@@ -440,6 +440,43 @@ at AssertionHandler.tests.cpp:<line number>
     <testcase classname="<exe-name>.global" name="CAPTURE can deal with complex expressions" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="CAPTURE can deal with complex expressions involving commas" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="CAPTURE parses string and character constants" time="{duration}" status="run"/>
+    <testcase classname="<exe-name>.global" name="COMPILE_TIME_REQUIRE should always fail at runtime" time="{duration}" status="run">
+      <failure type="COMPILE_TIME_REQUIRE">
+FAILED:
+COMPILE_TIME_REQUIRE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure type="COMPILE_TIME_REQUIRE">
+FAILED:
+COMPILE_TIME_REQUIRE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure message="false" type="COMPILE_TIME_REQUIRE">
+FAILED:
+  COMPILE_TIME_REQUIRE( false )
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+    </testcase>
+    <testcase classname="<exe-name>.global" name="COMPILE_TIME_REQUIRE_FALSE should always fail at runtime" time="{duration}" status="run">
+      <failure type="COMPILE_TIME_REQUIRE_FALSE">
+FAILED:
+COMPILE_TIME_REQUIRE_FALSE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure type="COMPILE_TIME_REQUIRE_FALSE">
+FAILED:
+COMPILE_TIME_REQUIRE_FALSE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure message="!(true)" type="COMPILE_TIME_REQUIRE_FALSE">
+FAILED:
+  COMPILE_TIME_REQUIRE_FALSE( true )
+with expansion:
+  !true
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+    </testcase>
+    <testcase classname="<exe-name>.global" name="COMPILE_TIME_SECTIONS C++17" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Capture and info messages" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Capture and info messages/Capture should stringify like assertions" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Capture and info messages/Info should NOT stringify the way assertions do" time="{duration}" status="run"/>
@@ -1085,6 +1122,8 @@ at Exception.tests.cpp:<line number>
     <testcase classname="<exe-name>.global" name="Multireporter updates ReporterPreferences properly" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Multireporter updates ReporterPreferences properly/Adding listeners" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Multireporter updates ReporterPreferences properly/Adding reporters" time="{duration}" status="run"/>
+    <testcase classname="<exe-name>.global" name="Nested compile time sections" time="{duration}" status="run"/>
+    <testcase classname="<exe-name>.global" name="Nested compile time sections/First [Passed at compile time]" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Nested generators and captured variables" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Nice descriptive name" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Non-std exceptions can be translated" time="{duration}" status="run">
@@ -1455,6 +1494,8 @@ A string sent directly to stderr
 A string sent to stderr via clog
       </system-err>
     </testcase>
+    <testcase classname="<exe-name>.global" name="Simple compile time section" time="{duration}" status="run"/>
+    <testcase classname="<exe-name>.global" name="Simple compile time section/Simple compile time section [Passed at compile time]" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Some simple comparisons between doubles" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Standard output from all sections is reported" time="{duration}" status="run"/>
     <testcase classname="<exe-name>.global" name="Standard output from all sections is reported/one" time="{duration}" status="run"/>

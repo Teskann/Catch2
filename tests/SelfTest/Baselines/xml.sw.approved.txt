@@ -3127,6 +3127,51 @@ Approx( 1.23399996757507324 )
     </Info>
     <OverallResult success="true" skips="0"/>
   </TestCase>
+  <TestCase name="COMPILE_TIME_REQUIRE should always fail at runtime" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+    <Failure filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      COMPILE_TIME_REQUIRE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+    </Failure>
+    <Failure filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      COMPILE_TIME_REQUIRE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+    </Failure>
+    <Expression success="false" type="COMPILE_TIME_REQUIRE" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      <Original>
+        false
+      </Original>
+      <Expanded>
+        false
+      </Expanded>
+    </Expression>
+    <OverallResult success="false" skips="0"/>
+  </TestCase>
+  <TestCase name="COMPILE_TIME_REQUIRE_FALSE should always fail at runtime" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+    <Failure filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      COMPILE_TIME_REQUIRE_FALSE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+    </Failure>
+    <Failure filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      COMPILE_TIME_REQUIRE_FALSE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+    </Failure>
+    <Expression success="false" type="COMPILE_TIME_REQUIRE_FALSE" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      <Original>
+        !(true)
+      </Original>
+      <Expanded>
+        !true
+      </Expanded>
+    </Expression>
+    <OverallResult success="false" skips="0"/>
+  </TestCase>
+  <TestCase name="COMPILE_TIME_SECTIONS C++17" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+    <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      <Original>
+        true
+      </Original>
+      <Expanded>
+        true
+      </Expanded>
+    </Expression>
+    <OverallResult success="true" skips="0"/>
+  </TestCase>
   <TestCase name="Capture and info messages" filename="tests/<exe-name>/UsageTests/ToStringGeneral.tests.cpp" >
     <Section name="Capture should stringify like assertions" filename="tests/<exe-name>/UsageTests/ToStringGeneral.tests.cpp" >
       <Info filename="tests/<exe-name>/UsageTests/ToStringGeneral.tests.cpp" >
@@ -9850,6 +9895,20 @@ Approx( 1.21999999999999997 )
     </Section>
     <OverallResult success="true" skips="0"/>
   </TestCase>
+  <TestCase name="Nested compile time sections" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+    <Section name="First [Passed at compile time]" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      <Expression success="true" type="COMPILE_TIME_SECTION" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+        <Original>
+          [Passed at compile time]
+        </Original>
+        <Expanded>
+          true
+        </Expanded>
+      </Expression>
+      <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
+    </Section>
+    <OverallResult success="true" skips="0"/>
+  </TestCase>
   <TestCase name="Nested generators and captured variables" tags="[generators]" filename="tests/<exe-name>/UsageTests/Generators.tests.cpp" >
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Generators.tests.cpp" >
       <Original>
@@ -13207,6 +13266,20 @@ A string sent directly to stderr
 A string sent to stderr via clog
       </StdErr>
     </OverallResult>
+  </TestCase>
+  <TestCase name="Simple compile time section" tags="[compilation]" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+    <Section name="Simple compile time section [Passed at compile time]" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+      <Expression success="true" type="COMPILE_TIME_SECTION" filename="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp" >
+        <Original>
+          [Passed at compile time]
+        </Original>
+        <Expanded>
+          true
+        </Expanded>
+      </Expression>
+      <OverallResults successes="1" failures="0" expectedFailures="0" skipped="false"/>
+    </Section>
+    <OverallResult success="true" skips="0"/>
   </TestCase>
   <TestCase name="Some simple comparisons between doubles" tags="[Approx]" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
     <Expression success="true" type="REQUIRE" filename="tests/<exe-name>/UsageTests/Approx.tests.cpp" >
@@ -22324,6 +22397,6 @@ Approx( -1.95996398454005449 )
     </Section>
     <OverallResult success="true" skips="0"/>
   </TestCase>
-  <OverallResults successes="2105" failures="157" expectedFailures="41" skips="12"/>
-  <OverallResultsCases successes="317" failures="95" expectedFailures="17" skips="6"/>
+  <OverallResults successes="2108" failures="163" expectedFailures="41" skips="12"/>
+  <OverallResultsCases successes="320" failures="97" expectedFailures="17" skips="6"/>
 </Catch2TestRun>

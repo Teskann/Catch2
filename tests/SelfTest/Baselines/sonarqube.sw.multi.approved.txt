@@ -664,6 +664,49 @@ at Class.tests.cpp:<line number>
     <testCase name="Lambdas in assertions" duration="{duration}"/>
     <testCase name="Optionally static assertions" duration="{duration}"/>
   </file>
+  <file path="tests/<exe-name>/UsageTests/CompileTimeTests.tests.cpp">
+    <testCase name="COMPILE_TIME_REQUIRE should always fail at runtime" duration="{duration}">
+      <failure message="COMPILE_TIME_REQUIRE()">
+FAILED:
+COMPILE_TIME_REQUIRE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure message="COMPILE_TIME_REQUIRE()">
+FAILED:
+COMPILE_TIME_REQUIRE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure message="COMPILE_TIME_REQUIRE(false)">
+FAILED:
+	COMPILE_TIME_REQUIRE( false )
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+    </testCase>
+    <testCase name="COMPILE_TIME_REQUIRE_FALSE should always fail at runtime" duration="{duration}">
+      <failure message="COMPILE_TIME_REQUIRE_FALSE()">
+FAILED:
+COMPILE_TIME_REQUIRE_FALSE(false) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure message="COMPILE_TIME_REQUIRE_FALSE()">
+FAILED:
+COMPILE_TIME_REQUIRE_FALSE(true) was evaluated at runtime, it should be evaluated at compile time in a COMPILE_TIME_SECTION.
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+      <failure message="COMPILE_TIME_REQUIRE_FALSE(!(true))">
+FAILED:
+	COMPILE_TIME_REQUIRE_FALSE( true )
+with expansion:
+	!true
+at CompileTimeTests.tests.cpp:<line number>
+      </failure>
+    </testCase>
+    <testCase name="COMPILE_TIME_SECTIONS C++17" duration="{duration}"/>
+    <testCase name="Nested compile time sections" duration="{duration}"/>
+    <testCase name="Nested compile time sections/First [Passed at compile time]" duration="{duration}"/>
+    <testCase name="Simple compile time section" duration="{duration}"/>
+    <testCase name="Simple compile time section/Simple compile time section [Passed at compile time]" duration="{duration}"/>
+  </file>
   <file path="tests/<exe-name>/UsageTests/Condition.tests.cpp">
     <testCase name="'Not' checks that should fail" duration="{duration}">
       <failure message="CHECK(false != false)">

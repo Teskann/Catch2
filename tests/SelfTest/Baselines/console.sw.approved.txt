@@ -2894,6 +2894,55 @@ with messages:
   '{' := '{'
 
 -------------------------------------------------------------------------------
+COMPILE_TIME_REQUIRE should always fail at runtime
+-------------------------------------------------------------------------------
+CompileTimeTests.tests.cpp:<line number>
+...............................................................................
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE(true) was evaluated at runtime, it should be evaluated
+  at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE(false) was evaluated at runtime, it should be evaluated
+  at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+  COMPILE_TIME_REQUIRE( false )
+
+-------------------------------------------------------------------------------
+COMPILE_TIME_REQUIRE_FALSE should always fail at runtime
+-------------------------------------------------------------------------------
+CompileTimeTests.tests.cpp:<line number>
+...............................................................................
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE_FALSE(false) was evaluated at runtime, it should be
+  evaluated at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE_FALSE(true) was evaluated at runtime, it should be
+  evaluated at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+  COMPILE_TIME_REQUIRE_FALSE( true )
+with expansion:
+  !true
+
+-------------------------------------------------------------------------------
+COMPILE_TIME_SECTIONS C++17
+-------------------------------------------------------------------------------
+CompileTimeTests.tests.cpp:<line number>
+...............................................................................
+
+CompileTimeTests.tests.cpp:<line number>: PASSED:
+  REQUIRE( true )
+
+-------------------------------------------------------------------------------
 Capture and info messages
   Capture should stringify like assertions
 -------------------------------------------------------------------------------
@@ -8249,6 +8298,18 @@ with expansion:
   true == true
 
 -------------------------------------------------------------------------------
+Nested compile time sections
+  First [Passed at compile time]
+-------------------------------------------------------------------------------
+CompileTimeTests.tests.cpp:<line number>
+...............................................................................
+
+CompileTimeTests.tests.cpp:<line number>: PASSED:
+  COMPILE_TIME_SECTION( [Passed at compile time] )
+with expansion:
+  true
+
+-------------------------------------------------------------------------------
 Nested generators and captured variables
 -------------------------------------------------------------------------------
 Generators.tests.cpp:<line number>
@@ -11268,6 +11329,18 @@ Misc.tests.cpp:<line number>
 
 
 No assertions in test case 'Sends stuff to stdout and stderr'
+
+-------------------------------------------------------------------------------
+Simple compile time section
+  Simple compile time section [Passed at compile time]
+-------------------------------------------------------------------------------
+CompileTimeTests.tests.cpp:<line number>
+...............................................................................
+
+CompileTimeTests.tests.cpp:<line number>: PASSED:
+  COMPILE_TIME_SECTION( [Passed at compile time] )
+with expansion:
+  true
 
 -------------------------------------------------------------------------------
 Some simple comparisons between doubles
@@ -19295,6 +19368,6 @@ Misc.tests.cpp:<line number>
 Misc.tests.cpp:<line number>: PASSED:
 
 ===============================================================================
-test cases:  435 |  317 passed |  95 failed | 6 skipped | 17 failed as expected
-assertions: 2303 | 2105 passed | 157 failed | 41 failed as expected
+test cases:  440 |  320 passed |  97 failed | 6 skipped | 17 failed as expected
+assertions: 2312 | 2108 passed | 163 failed | 41 failed as expected
 

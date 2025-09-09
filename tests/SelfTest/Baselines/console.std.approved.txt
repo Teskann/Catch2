@@ -380,6 +380,46 @@ due to unexpected exception with message:
   { nested assertion failed }
 
 -------------------------------------------------------------------------------
+COMPILE_TIME_REQUIRE should always fail at runtime
+-------------------------------------------------------------------------------
+CompileTimeTests.tests.cpp:<line number>
+...............................................................................
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE(true) was evaluated at runtime, it should be evaluated
+  at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE(false) was evaluated at runtime, it should be evaluated
+  at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+  COMPILE_TIME_REQUIRE( false )
+
+-------------------------------------------------------------------------------
+COMPILE_TIME_REQUIRE_FALSE should always fail at runtime
+-------------------------------------------------------------------------------
+CompileTimeTests.tests.cpp:<line number>
+...............................................................................
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE_FALSE(false) was evaluated at runtime, it should be
+  evaluated at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+explicitly with message:
+  COMPILE_TIME_REQUIRE_FALSE(true) was evaluated at runtime, it should be
+  evaluated at compile time in a COMPILE_TIME_SECTION.
+
+CompileTimeTests.tests.cpp:<line number>: FAILED:
+  COMPILE_TIME_REQUIRE_FALSE( true )
+with expansion:
+  !true
+
+-------------------------------------------------------------------------------
 Captures do not leave block with an exception
 -------------------------------------------------------------------------------
 Message.tests.cpp:<line number>
@@ -1719,6 +1759,6 @@ due to unexpected exception with message:
   Why would you throw a std::string?
 
 ===============================================================================
-test cases:  435 |  335 passed |  76 failed | 7 skipped | 17 failed as expected
-assertions: 2282 | 2105 passed | 136 failed | 41 failed as expected
+test cases:  440 |  338 passed |  78 failed | 7 skipped | 17 failed as expected
+assertions: 2291 | 2108 passed | 142 failed | 41 failed as expected
 

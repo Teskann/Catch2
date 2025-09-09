@@ -11,6 +11,8 @@
 #include <catch2/internal/catch_test_macro_impl.hpp>
 #include <catch2/catch_message.hpp>
 #include <catch2/catch_user_config.hpp>
+#include <catch2/internal/catch_compile_time_asserts.hpp>
+#include <catch2/internal/catch_compile_time_section.hpp>
 #include <catch2/internal/catch_section.hpp>
 #include <catch2/internal/catch_test_registry.hpp>
 #include <catch2/internal/catch_unique_name.hpp>
@@ -48,6 +50,7 @@
   #define CATCH_REGISTER_TEST_CASE( Function, ... ) INTERNAL_CATCH_REGISTER_TESTCASE( Function, __VA_ARGS__ )
   #define CATCH_SECTION( ... ) INTERNAL_CATCH_SECTION( __VA_ARGS__ )
   #define CATCH_DYNAMIC_SECTION( ... ) INTERNAL_CATCH_DYNAMIC_SECTION( __VA_ARGS__ )
+  #define CATCH_COMPILE_TIME_SECTION( ... ) INTERNAL_CATCH_COMPILE_TIME_SECTION( __VA_ARGS__ )
   #define CATCH_FAIL( ... ) do { \
            INTERNAL_CATCH_MSG("CATCH_FAIL", Catch::ResultWas::ExplicitFailure, Catch::ResultDisposition::Normal, __VA_ARGS__ );  \
            Catch::Detail::Unreachable(); \
@@ -72,6 +75,8 @@
     #define CATCH_STATIC_CHECK_FALSE( ... ) CATCH_CHECK_FALSE( __VA_ARGS__ )
   #endif
 
+  #define CATCH_COMPILE_TIME_REQUIRE( ... ) INTERNAL_CATCH_COMPILE_TIME_ASSERT( "COMPILE_TIME_REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__ )
+  #define CATCH_COMPILE_TIME_REQUIRE_FALSE( ... ) INTERNAL_CATCH_COMPILE_TIME_ASSERT( "COMPILE_TIME_REQUIRE_FALSE", Catch::ResultDisposition::Normal | Catch::ResultDisposition::FalseTest, __VA_ARGS__ )
 
   // "BDD-style" convenience wrappers
   #define CATCH_SCENARIO( ... ) CATCH_TEST_CASE( "Scenario: " __VA_ARGS__ )
@@ -109,6 +114,7 @@
   #define CATCH_REGISTER_TEST_CASE( Function, ... ) (void)(0)
   #define CATCH_SECTION( ... )
   #define CATCH_DYNAMIC_SECTION( ... )
+  #define CATCH_COMPILE_TIME_SECTION( ... )
   #define CATCH_FAIL( ... ) (void)(0)
   #define CATCH_FAIL_CHECK( ... ) (void)(0)
   #define CATCH_SUCCEED( ... ) (void)(0)
@@ -118,6 +124,9 @@
   #define CATCH_STATIC_REQUIRE_FALSE( ... ) (void)(0)
   #define CATCH_STATIC_CHECK( ... )       (void)(0)
   #define CATCH_STATIC_CHECK_FALSE( ... ) (void)(0)
+
+  #define CATCH_COMPILE_TIME_REQUIRE( ... ) (void)(0)
+  #define CATCH_COMPILE_TIME_REQUIRE_FALSE( ... ) (void)(0)
 
   // "BDD-style" convenience wrappers
   #define CATCH_SCENARIO( ... ) INTERNAL_CATCH_TESTCASE_NO_REGISTRATION(INTERNAL_CATCH_UNIQUE_NAME( CATCH2_INTERNAL_TEST_ ))
@@ -155,6 +164,7 @@
   #define REGISTER_TEST_CASE( Function, ... ) INTERNAL_CATCH_REGISTER_TESTCASE( Function, __VA_ARGS__ )
   #define SECTION( ... ) INTERNAL_CATCH_SECTION( __VA_ARGS__ )
   #define DYNAMIC_SECTION( ... ) INTERNAL_CATCH_DYNAMIC_SECTION( __VA_ARGS__ )
+  #define COMPILE_TIME_SECTION( ... ) INTERNAL_CATCH_COMPILE_TIME_SECTION( __VA_ARGS__ )
   #define FAIL( ... ) do { \
            INTERNAL_CATCH_MSG( "FAIL", Catch::ResultWas::ExplicitFailure, Catch::ResultDisposition::Normal, __VA_ARGS__ ); \
            Catch::Detail::Unreachable(); \
@@ -178,6 +188,9 @@
     #define STATIC_CHECK( ... )       CHECK( __VA_ARGS__ )
     #define STATIC_CHECK_FALSE( ... ) CHECK_FALSE( __VA_ARGS__ )
   #endif
+
+  #define COMPILE_TIME_REQUIRE( ... ) INTERNAL_CATCH_COMPILE_TIME_ASSERT( "COMPILE_TIME_REQUIRE", Catch::ResultDisposition::Normal, __VA_ARGS__ )
+  #define COMPILE_TIME_REQUIRE_FALSE( ... ) INTERNAL_CATCH_COMPILE_TIME_ASSERT( "COMPILE_TIME_REQUIRE_FALSE", Catch::ResultDisposition::Normal | Catch::ResultDisposition::FalseTest, __VA_ARGS__ )
 
   // "BDD-style" convenience wrappers
   #define SCENARIO( ... ) TEST_CASE( "Scenario: " __VA_ARGS__ )
@@ -215,6 +228,7 @@
   #define REGISTER_TEST_CASE( Function, ... ) (void)(0)
   #define SECTION( ... )
   #define DYNAMIC_SECTION( ... )
+  #define COMPILE_TIME_SECTION( ... )
   #define FAIL( ... ) (void)(0)
   #define FAIL_CHECK( ... ) (void)(0)
   #define SUCCEED( ... ) (void)(0)
@@ -224,6 +238,8 @@
   #define STATIC_REQUIRE_FALSE( ... ) (void)(0)
   #define STATIC_CHECK( ... )       (void)(0)
   #define STATIC_CHECK_FALSE( ... ) (void)(0)
+  #define COMPILE_TIME_REQUIRE( ... ) (void)(0)
+  #define COMPILE_TIME_REQUIRE_FALSE( ... ) (void)(0)
 
   // "BDD-style" convenience wrappers
   #define SCENARIO( ... ) INTERNAL_CATCH_TESTCASE_NO_REGISTRATION(INTERNAL_CATCH_UNIQUE_NAME( CATCH2_INTERNAL_TEST_ ) )
