@@ -24,6 +24,13 @@ namespace Catch {
     {
         m_resultCapture.notifyAssertionStarted( m_assertionInfo );
     }
+    AssertionHandler
+    AssertionHandler::create( StringRef macroName,
+                              SourceLineInfo lineInfo,
+                              StringRef capturedExpression,
+                              ResultDisposition::Flags resultDisposition ) {
+        return AssertionHandler{ macroName, lineInfo, capturedExpression, resultDisposition };
+    }
 
     void AssertionHandler::handleExpr( ITransientExpression const& expr ) {
         m_resultCapture.handleExpr( m_assertionInfo, expr, m_reaction );

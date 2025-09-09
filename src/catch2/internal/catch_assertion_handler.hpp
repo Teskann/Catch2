@@ -40,6 +40,17 @@ namespace Catch {
             }
         }
 
+        /// Calling constructor of non-literal objects in a constexpr function
+        /// is a C++23 extension. Some constexpr functions need to create
+        /// AssertionHandler objects in the non-constexpr path of their
+        /// implementation.
+        /// Using this function makes it legal.
+        static AssertionHandler
+        create( StringRef macroName,
+                SourceLineInfo lineInfo,
+                StringRef capturedExpression,
+                ResultDisposition::Flags resultDisposition );
+
 
         template<typename T>
         constexpr void handleExpr( ExprLhs<T> const& expr ) {
